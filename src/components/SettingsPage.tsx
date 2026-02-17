@@ -9,9 +9,16 @@ import { StarsBackground } from "@/components/StarsBackground";
 
 const PROVIDERS = [
   {
+    id: "google",
+    name: "Google AI",
+    description: "Gemini — free tier available",
+    placeholder: "AIza...",
+    url: "https://aistudio.google.com/app/apikey",
+  },
+  {
     id: "openai",
     name: "OpenAI",
-    description: "GPT-4, GPT-3.5 — used for messages, ideas, and creative content",
+    description: "GPT-4, GPT-3.5 — requires paid subscription",
     placeholder: "sk-...",
     url: "https://platform.openai.com/api-keys",
   },
@@ -21,13 +28,6 @@ const PROVIDERS = [
     description: "Claude — alternative for creative writing",
     placeholder: "sk-ant-...",
     url: "https://console.anthropic.com/settings/keys",
-  },
-  {
-    id: "google",
-    name: "Google AI",
-    description: "Gemini — free tier available",
-    placeholder: "AIza...",
-    url: "https://aistudio.google.com/app/apikey",
   },
 ] as const;
 
