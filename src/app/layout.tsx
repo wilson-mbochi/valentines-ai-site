@@ -16,7 +16,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Valentine's AI | Create Something Special",
+  title: "Eiish | Create Something Special",
   description: "AI-powered Valentine's experiences. Create unique, personalized moments.",
 };
 

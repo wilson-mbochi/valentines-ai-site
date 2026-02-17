@@ -1,4 +1,4 @@
-# Valentine's AI – Setup Guide
+# Eiish – Setup Guide
 
 This app uses **authentication** and **bring-your-own API keys** so users can use their own AI models (free or paid).
 

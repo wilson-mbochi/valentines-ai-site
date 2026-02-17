@@ -35,7 +35,7 @@ export function Features() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          Why Choose Valentine&apos;s AI?
+          Why Choose Eiish?
         </motion.h2>
         <motion.p
           className="text-zinc-400 text-center max-w-2xl mx-auto mb-16"

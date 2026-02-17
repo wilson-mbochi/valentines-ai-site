@@ -27,7 +27,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 font-display font-semibold text-white">
             <Heart className="w-5 h-5 text-rose-400" />
-            Valentine&apos;s AI
+            Eiish
           </Link>
 
           {/* Desktop nav */}

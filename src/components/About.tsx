@@ -13,7 +13,7 @@ export function About() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          About Valentine&apos;s AI
+          About Eiish
         </motion.h2>
         <motion.p
           className="text-lg text-zinc-400 leading-relaxed"

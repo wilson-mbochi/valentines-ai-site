@@ -1,4 +1,4 @@
-# Valentine's AI
+# Eiish
 
 AI-powered Valentine's experiences. Users sign in, add their own API keys (OpenAI, Anthropic, Google), and generate personalized messages, ideas, and creative content.
 

@@ -1,7 +1,7 @@
 import { DemoPage } from "@/components/DemoPage";
 
 export const metadata = {
-  title: "Try the AI Tools | Valentine's AI",
+  title: "Try the AI Tools | Eiish",
   description: "Experience personalized messages, thoughtful ideas, and creative magic.",
 };
 

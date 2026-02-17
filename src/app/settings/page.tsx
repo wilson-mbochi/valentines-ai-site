@@ -1,7 +1,7 @@
 import { SettingsPage } from "@/components/SettingsPage";
 
 export const metadata = {
-  title: "Settings | Valentine's AI",
+  title: "Settings | Eiish",
   description: "Manage your API keys for AI providers.",
 };
 
