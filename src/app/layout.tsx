@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className="scroll-smooth">
+      <html lang="en" className="scroll-smooth" style={{ colorScheme: "dark" }}>
         <body
           className={`${outfit.variable} ${dmSans.variable} font-sans antialiased`}
         >

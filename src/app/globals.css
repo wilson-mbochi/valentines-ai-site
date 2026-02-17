@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: dark;
   --background: #fdf8f5;
   --foreground: #1a1a1a;
   --accent: #e11d48;
@@ -30,6 +31,12 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+/* Dark dropdown options for native selects */
+select option {
+  background: rgb(39 39 42);
+  color: rgb(255 255 255);
 }
 
 .font-display {

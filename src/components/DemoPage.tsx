@@ -156,7 +156,7 @@ export function DemoPage() {
                   <select
                     value={relationshipType}
                     onChange={(e) => setRelationshipType(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-800/90 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 [&_option]:bg-zinc-800 [&_option]:text-white"
                   >
                     <option value="partner">Partner / Significant other</option>
                     <option value="friend">Friend</option>
@@ -171,7 +171,7 @@ export function DemoPage() {
                   <select
                     value={tone}
                     onChange={(e) => setTone(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-800/90 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 [&_option]:bg-zinc-800 [&_option]:text-white"
                   >
                     <option value="romantic">Romantic</option>
                     <option value="playful">Playful</option>
@@ -220,7 +220,7 @@ export function DemoPage() {
                   <select
                     value={budget}
                     onChange={(e) => setBudget(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-800/90 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 [&_option]:bg-zinc-800 [&_option]:text-white"
                   >
                     <option value="budget">Budget-friendly</option>
                     <option value="moderate">Moderate</option>
@@ -256,7 +256,7 @@ export function DemoPage() {
                   <select
                     value={contentType}
                     onChange={(e) => setContentType(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-800/90 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 [&_option]:bg-zinc-800 [&_option]:text-white"
                   >
                     <option value="poem">Poem</option>
                     <option value="letter">Love letter</option>
@@ -270,7 +270,7 @@ export function DemoPage() {
                   <select
                     value={style}
                     onChange={(e) => setStyle(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-800/90 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 [&_option]:bg-zinc-800 [&_option]:text-white"
                   >
                     <option value="classic">Classic</option>
                     <option value="modern">Modern</option>
