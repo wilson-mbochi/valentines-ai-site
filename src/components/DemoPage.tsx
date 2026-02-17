@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { MessageCircle, Lightbulb, Sparkles, ArrowLeft, Loader2 } from "lucide-react";
@@ -22,6 +22,13 @@ export function DemoPage() {
   const [budget, setBudget] = useState("moderate");
   const [contentType, setContentType] = useState("poem");
   const [style, setStyle] = useState("classic");
+  const outputRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (output && typeof window !== "undefined" && window.innerWidth < 640) {
+      outputRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [output]);
 
   const handleGenerate = async () => {
     setLoading(true);
@@ -295,6 +302,7 @@ export function DemoPage() {
 
           {output && (
             <motion.div
+              ref={outputRef}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               className="mt-10 p-6 rounded-2xl bg-white/5 border border-white/10 max-h-[60vh] overflow-y-auto min-w-0 w-full max-w-full"

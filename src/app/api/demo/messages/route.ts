@@ -22,7 +22,7 @@ async function generateWithOpenAI(
       {
         role: "system",
         content: `You are a thoughtful Valentine's Day message writer. Create a personalized, heartfelt message. 
-Keep it concise (2-4 short paragraphs). Match the requested tone. 
+Keep it concise (2-4 short paragraphs). Put a blank line between each paragraph. Match the requested tone. 
 ${hint ? `Incorporate or reference these details: ${hint}` : ""}`,
       },
       {
@@ -30,10 +30,23 @@ ${hint ? `Incorporate or reference these details: ${hint}` : ""}`,
         content: `Write a Valentine's message for ${name}. Relationship: ${relationshipType}. Tone: ${tone}.`,
       },
     ],
-    max_tokens: 400,
+    max_tokens: 800,
   });
 
   return res.choices[0]?.message?.content?.trim() ?? "";
+}
+
+/** Insert paragraph breaks when model returns content on one line */
+function formatMessagesContent(content: string): string {
+  if (!content.trim()) return content;
+  if (content.includes("\n\n")) return content; // Already has paragraph breaks
+  return content.replace(/\.\s+([A-Z])/g, (_match, letter: string, offset: number) => {
+    const before = content.slice(0, offset);
+    const lastBreak = before.lastIndexOf("\n\n");
+    const segmentStart = lastBreak === -1 ? 0 : lastBreak + 2;
+    const segmentLen = offset - segmentStart;
+    return segmentLen > 60 ? `.\n\n${letter}` : `. ${letter}`;
+  });
 }
 
 function getTemplateContent(
@@ -76,7 +89,7 @@ export async function POST(request: Request) {
     const toneVal = tone || "romantic";
     const hintVal = hint || "";
     const systemPrompt = `You are a thoughtful Valentine's Day message writer. Create a personalized, heartfelt message. 
-Keep it concise (2-4 short paragraphs). Match the requested tone. 
+Keep it concise (2-4 short paragraphs). Put a blank line between each paragraph. Match the requested tone. 
 ${hintVal ? `Incorporate or reference these details: ${hintVal}` : ""}`;
     const userPrompt = `Write a Valentine's message for ${name}. Relationship: ${relationship}. Tone: ${toneVal}.`;
 
@@ -87,10 +100,10 @@ ${hintVal ? `Incorporate or reference these details: ${hintVal}` : ""}`;
           googleKey,
           systemPrompt,
           userPrompt,
-          400,
+          800,
           geminiModel as GeminiModelId | undefined
         );
-        if (content) return NextResponse.json({ content });
+        if (content) return NextResponse.json({ content: formatMessagesContent(content) });
       } catch (err: unknown) {
         console.error("Gemini:", err instanceof Error ? err.message : "Error");
       }
@@ -108,7 +121,7 @@ ${hintVal ? `Incorporate or reference these details: ${hintVal}` : ""}`;
             hintVal
           )
         );
-        return NextResponse.json({ content });
+        if (content) return NextResponse.json({ content: formatMessagesContent(content) });
       } catch (err: unknown) {
         console.error("OpenAI:", err instanceof Error ? err.message : "Error");
       }

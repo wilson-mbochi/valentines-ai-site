@@ -29,17 +29,30 @@ async function generateWithOpenAI(
         role: "system",
         content: `You are a romantic writer. ${typePrompt} for someone named ${name}. 
 Style: ${style}. Keep it genuine and personal. 
-For poems: 2-3 stanzas. For letters: 2-4 paragraphs. For messages: 1-2 short paragraphs.`,
+For poems: 2-3 stanzas. For letters: 2-4 paragraphs. For messages: 1-2 short paragraphs. Put a blank line between each paragraph or stanza.`,
       },
       {
         role: "user",
         content: `Create ${contentType} for ${name} in a ${style} style.`,
       },
     ],
-    max_tokens: 500,
+    max_tokens: 800,
   });
 
   return res.choices[0]?.message?.content?.trim() ?? "";
+}
+
+/** Insert paragraph/stanza breaks when model returns content on one line */
+function formatCreativeContent(content: string): string {
+  if (!content.trim()) return content;
+  if (content.includes("\n\n")) return content; // Already has breaks
+  return content.replace(/\.\s+([A-Z])/g, (_match, letter: string, offset: number) => {
+    const before = content.slice(0, offset);
+    const lastBreak = before.lastIndexOf("\n\n");
+    const segmentStart = lastBreak === -1 ? 0 : lastBreak + 2;
+    const segmentLen = offset - segmentStart;
+    return segmentLen > 60 ? `.\n\n${letter}` : `. ${letter}`;
+  });
 }
 
 function getTemplateContent(
@@ -93,7 +106,7 @@ export async function POST(request: Request) {
           : "Write a short, sweet message";
     const systemPrompt = `You are a romantic writer. ${typePrompt} for someone named ${name}. 
 Style: ${styleVal}. Keep it genuine and personal. 
-For poems: 2-3 stanzas. For letters: 2-4 paragraphs. For messages: 1-2 short paragraphs.`;
+For poems: 2-3 stanzas. For letters: 2-4 paragraphs. For messages: 1-2 short paragraphs. Put a blank line between each paragraph or stanza.`;
     const userPrompt = `Create ${contentTypeVal} for ${name} in a ${styleVal} style.`;
 
     const googleKey = await getUserApiKey("google");
@@ -103,10 +116,10 @@ For poems: 2-3 stanzas. For letters: 2-4 paragraphs. For messages: 1-2 short par
           googleKey,
           systemPrompt,
           userPrompt,
-          500,
+          800,
           geminiModel as GeminiModelId | undefined
         );
-        if (content) return NextResponse.json({ content });
+        if (content) return NextResponse.json({ content: formatCreativeContent(content) });
       } catch (err: unknown) {
         console.error("Gemini:", err instanceof Error ? err.message : "Error");
       }
@@ -123,7 +136,7 @@ For poems: 2-3 stanzas. For letters: 2-4 paragraphs. For messages: 1-2 short par
             name
           )
         );
-        return NextResponse.json({ content });
+        if (content) return NextResponse.json({ content: formatCreativeContent(content) });
       } catch (err: unknown) {
         console.error("OpenAI:", err instanceof Error ? err.message : "Error");
       }
