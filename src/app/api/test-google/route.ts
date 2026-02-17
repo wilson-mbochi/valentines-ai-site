@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     try {
       const body = (await request.json().catch(() => ({}))) as { geminiModel?: string };
       if (body?.geminiModel && GEMINI_MODELS.some((m) => m.id === body.geminiModel)) {
-        model = body.geminiModel;
+        model = body.geminiModel as GeminiModelId;
       }
     } catch {
       // use default
