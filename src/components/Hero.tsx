@@ -1,11 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Heart, Sparkles } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-16">
       {/* Ambient gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -27,7 +28,7 @@ export function Hero() {
       </div>
 
       <motion.div
-        className="relative z-10 text-center max-w-4xl mx-auto"
+        className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center"
         initial="hidden"
         animate="visible"
         variants={{
@@ -37,66 +38,72 @@ export function Hero() {
           hidden: {},
         }}
       >
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8"
-        >
-          <Sparkles className="w-4 h-4 text-rose-400" />
-          <span className="text-sm text-zinc-300 font-medium">
-            AI-Powered Experiences
-          </span>
-        </motion.div>
-
-        <motion.h1
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6"
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { opacity: 1, y: 0 },
-          }}
-        >
-          <span className="block">Valentine&apos;s</span>
-          <span className="block bg-gradient-to-r from-rose-400 via-pink-400 to-rose-500 bg-clip-text text-transparent">
-            Reimagined
-          </span>
-        </motion.h1>
-
-        <motion.p
-          className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-12 leading-relaxed"
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-        >
-          Create unique, personalized moments with AI. From custom messages to
-          unforgettable experiences—make this Valentine&apos;s Day truly special.
-        </motion.p>
-
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-        >
-          <motion.button
-            className="group flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold text-lg shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 transition-all duration-300"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+        <div className="w-full">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8"
           >
-            <Heart className="w-5 h-5 group-hover:scale-110 transition-transform" />
-            Get Started
-          </motion.button>
-          <motion.button
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-white/20 text-white font-medium hover:bg-white/5 transition-colors duration-300"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            <Sparkles className="w-4 h-4 text-rose-400" />
+            <span className="text-sm text-zinc-300 font-medium">
+              AI-Powered Experiences
+            </span>
+          </motion.div>
+
+          <motion.h1
+            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 overflow-visible"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0 },
+            }}
           >
-            Learn More
-          </motion.button>
-        </motion.div>
+            <span className="block">Valentine&apos;s</span>
+            <span className="block bg-gradient-to-r from-rose-400 via-pink-400 to-rose-500 bg-clip-text text-transparent pb-2 leading-[1.25]">
+              Reimagined
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto md:mx-auto mb-12 leading-relaxed"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            Create unique, personalized moments with AI. From custom messages to
+            unforgettable experiences—make this Valentine&apos;s Day truly special.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <Link href="/demo">
+              <motion.span
+                className="group flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold text-lg shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 transition-all duration-300 cursor-pointer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Heart className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                Get Started
+              </motion.span>
+            </Link>
+            <Link href="/demo">
+              <motion.span
+                className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-white/20 text-white font-medium hover:bg-white/5 transition-colors duration-300 cursor-pointer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Learn More
+              </motion.span>
+            </Link>
+          </motion.div>
+        </div>
       </motion.div>
 
       {/* Scroll indicator */}

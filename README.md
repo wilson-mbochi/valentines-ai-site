@@ -1,4 +1,16 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Valentine's AI
+
+AI-powered Valentine's experiences. Users sign in, add their own API keys (OpenAI, Anthropic, Google), and generate personalized messages, ideas, and creative content.
+
+## Setup
+
+**Before running the app**, copy `env.example` to `.env.local` and configure:
+
+- **Clerk** – Authentication (sign up at [clerk.com](https://clerk.com))
+- **Supabase** – API key storage (sign up at [supabase.com](https://supabase.com))
+- **ENCRYPTION_SECRET** – For encrypting stored keys (run `openssl rand -base64 32`)
+
+See **[SETUP.md](./SETUP.md)** for detailed instructions.
 
 ## Getting Started
 
