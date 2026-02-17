@@ -87,7 +87,7 @@ export function DemoPage() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-2">
-            Try the AI Tools
+            Try the Magic :)
           </h1>
           <p className="text-zinc-400 mb-4">
             Generate personalized content for your Valentine&apos;s Day. Choose a tool below.
@@ -101,7 +101,7 @@ export function DemoPage() {
           </p>
 
           {/* Tool tabs */}
-          <div className="flex flex-wrap gap-2 mb-10">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 mb-10">
             {tools.map((tool) => (
               <button
                 key={tool.id}
@@ -109,7 +109,7 @@ export function DemoPage() {
                   setActiveTool(tool.id);
                   setOutput("");
                 }}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all ${
+                className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all w-full sm:w-auto ${
                   activeTool === tool.id
                     ? "bg-rose-500/20 text-rose-400 border border-rose-500/30"
                     : "bg-white/5 text-zinc-400 border border-white/10 hover:bg-white/10 hover:text-white"
