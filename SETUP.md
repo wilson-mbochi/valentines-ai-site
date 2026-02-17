@@ -55,7 +55,32 @@ Add to `.env.local`:
 ENCRYPTION_SECRET=your-generated-secret
 ```
 
-## 4. Run the App
+## 4. Deploy (Vercel, etc.)
+
+**Option A – Push from local (Windows-compatible):**
+
+1. Get a Vercel token: [vercel.com/account/tokens](https://vercel.com/account/tokens)
+2. Link your project (if needed): `vercel link`
+3. Set the token and push:
+   ```bash
+   set VERCEL_TOKEN=your_token_here
+   npm run env:push
+   ```
+   (PowerShell: `$env:VERCEL_TOKEN="your_token_here"`; then `npm run env:push`)
+
+**Option B – Add manually in Vercel Dashboard:**
+
+Go to **Settings** → **Environment Variables** and add:
+
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+- `CLERK_SECRET_KEY`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `ENCRYPTION_SECRET`
+
+**The build will fail** if `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` is missing. Add all vars before deploying.
+
+## 5. Run the App
 
 ```bash
 npm run dev
@@ -80,6 +105,6 @@ ENCRYPTION_SECRET=YOUR_ENCRYPTION_SECRET
 
 1. User signs up / signs in (Clerk).
 2. User goes to **Settings** and adds their OpenAI API key (or Anthropic, Google).
-3. User goes to **Try AI Tools** and generates content.
+3. User goes to **Try the Magic** and generates content.
 4. If they have an API key: real AI generation (they pay their provider).
 5. If they don’t: template content is shown.
