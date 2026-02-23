@@ -3,10 +3,15 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Heart, Sparkles } from "lucide-react";
+import { CupidGraphic } from "./CupidGraphic";
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-16">
+      {/* Cupid graphics */}
+      <CupidGraphic side="left" className="z-[5]" />
+      <CupidGraphic side="right" className="z-[5]" />
+
       {/* Ambient gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
