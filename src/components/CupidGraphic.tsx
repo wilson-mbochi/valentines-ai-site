@@ -4,15 +4,21 @@ import { motion } from "framer-motion";
 
 interface CupidGraphicProps {
   side?: "left" | "right";
+  variant?: "hero" | "inline";
   className?: string;
 }
 
-export function CupidGraphic({ side = "left", className = "" }: CupidGraphicProps) {
+export function CupidGraphic({ side = "left", variant = "hero", className = "" }: CupidGraphicProps) {
   const isLeft = side === "left";
+  const isInline = variant === "inline";
 
   return (
     <motion.div
-      className={`absolute top-1/2 -translate-y-1/2 w-24 h-24 sm:w-32 sm:h-32 pointer-events-none ${isLeft ? "left-4 sm:left-8 lg:left-16" : "right-4 sm:right-8 lg:right-16"} ${!isLeft ? "scale-x-[-1]" : ""} ${className}`}
+      className={
+        isInline
+          ? `w-20 h-20 sm:w-24 sm:h-24 pointer-events-none shrink-0 ${!isLeft ? "scale-x-[-1]" : ""} ${className}`
+          : `absolute top-1/2 -translate-y-1/2 w-24 h-24 sm:w-32 sm:h-32 pointer-events-none ${isLeft ? "left-4 sm:left-8 lg:left-16" : "right-4 sm:right-8 lg:right-16"} ${!isLeft ? "scale-x-[-1]" : ""} ${className}`
+      }
       animate={{
         y: [0, -12, 0],
         rotate: isLeft ? [-3, 3, -3] : [3, -3, 3],
